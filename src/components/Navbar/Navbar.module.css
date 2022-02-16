@@ -2,11 +2,9 @@
     grid-area: n;
     background-color: burlywood;
     }
-    .item{
-color: azure;
-
+.item {
+    color: azure;
     }
-    .item.active{
-        color: blue;
-        
+.item.active {
+    color: blue;
             }
