@@ -1,5 +1,11 @@
 let state =
 {
+    navPage:{
+        friends:[
+            {id: 1, name: 'biba'},
+            {id: 2, name: 'boba'}
+        ]
+    },
     profilePage:{
         posts : [
             {id: 1, message: 'hi, fuck you', likecounts: 1, dislikecounts: 3},
