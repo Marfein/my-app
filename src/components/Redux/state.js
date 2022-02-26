@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../../Render";
+
 let state =
 {
     navPage:{
@@ -26,5 +28,15 @@ let state =
             {id: 4, message: 'lol'}]
     }
 
+};
+export let addPost=(postMessage)=>{
+    let newPost={
+        id: 3,
+        message:postMessage,
+        likesCount:1,
+        dislikesCount:1
+    };
+    state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state);
 };
 export default state;
