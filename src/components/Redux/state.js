@@ -1,5 +1,6 @@
-import {rerenderEntireTree} from "../../Render";
-
+let rerenderEntireTree= ()=>{
+console.log('statechange');
+}
 let state =
 {
     navPage:{
@@ -12,7 +13,8 @@ let state =
         posts : [
             {id: 1, message: 'hi, fuck you', likecounts: 1, dislikecounts: 3},
             {id: 2, message: 'no, fuck you', likecounts: 5, dislikecounts: 6}
-        ]
+        ],
+        newPostText:'fdsfsd'
     },
     dialogsPage:{
         dialogs : [
@@ -29,14 +31,23 @@ let state =
     }
 
 };
-export let addPost=(postMessage)=>{
+window.state=state;
+export const addPost=()=>{
     let newPost={
         id: 3,
-        message:postMessage,
+        message:state.profilePage.newPostText,
         likesCount:1,
         dislikesCount:1
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText='';
     rerenderEntireTree(state);
 };
+export const updateNewPostText=(newText)=>{
+    state.profilePage.newPostText=newText;
+    rerenderEntireTree(state);
+};
+export const subscribe = (observer) =>{
+    rerenderEntireTree = observer;
+}
 export default state;
