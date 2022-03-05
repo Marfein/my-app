@@ -13,8 +13,7 @@ let store = {
                 posts : [
                     {id: 1, message: 'hi, fuck you', likecounts: 1, dislikecounts: 3},
                     {id: 2, message: 'no, fuck you', likecounts: 5, dislikecounts: 6}
-                ],
-                newPostText:'fdsfsd'
+                ]
             },
             dialogsPage:{
                 dialogs : [
