@@ -4,8 +4,8 @@ let initialState={
         {id: 2, name: 'boba'}
     ]
 };
-const NavReducer = (state= initialState,action) =>{
+const navReducer = (state= initialState,action) =>{
 
     return state;
     }
-export default NavReducer;
+export default navReducer;

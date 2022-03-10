@@ -3,7 +3,7 @@ import dialogsReducer from "./DialogsReducer";
 import NavReducer from "./NavReducer";
 let store = {
    _state : {
-            navPage:{
+            sidePage:{
                 friends:[
                     {id: 1, name: 'biba'},
                     {id: 2, name: 'boba'}
