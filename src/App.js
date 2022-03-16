@@ -5,10 +5,10 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 import News from './components/News/News';
-import Music from './components/Music/Music';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import store from "./components/Redux/ReduxStore";
+import UsersContainer from "./components/Music/UsersContainer";
 
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
                 <Routes>
                     <Route path="/dialogs/*" element={<DialogsContainer />}/>
                         <Route path="/profile/*" element={<Profile />} />
-                        <Route path="/Music" element={<Music/>} />
+                        <Route path="/users" element={<UsersContainer />} />
                         <Route path="/Settings" element={<Settings/>} />
                         <Route path="/News" element={<News/>} />
                 </Routes>
