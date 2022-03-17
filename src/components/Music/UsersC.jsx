@@ -4,18 +4,39 @@ import * as axios from 'axios';
 import UserPhoto from '../../assets/images/8f160b5e9d954380c4b14b0f5ff4295ec9c141df_full.jpg';
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
 
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
-            .then(response => {
+componentDidMount() {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        .then(response => {
 
-                this.props.setUsers(response.data.items);
-            });
+            this.props.setUsers(response.data.items);
+            this.props.setTotalUsersCount(response.data.totalCount);
+        });
+}
+onPageChanged = (pageNumber)=>{
+    this.props.setCurrentPage(pageNumber)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        .then(response => {
+            this.props.setUsers(response.data.items);
+        });
+}
+    render() {
+
+    let pagesCount = Math.ceil (this.props.totalUsersCount/this.props.pageSize);
+
+    let pages = [];
+    for (let i=1; i<=pagesCount; i++){
+        pages.push(i)
+        if (i === 20) break;
     }
 
-    render() {
         return <div>
+           <div>
+               {pages.map(p=> {
+                  return <span className={ this.props.currentPage === p && style.selectedPage}
+                               onClick={(e) => {this.onPageChanged(p) }} key={p.currentPage}>{p}</span>
+               })}
+           </div>
             {
                 this.props.users.map(u => <div key={u.id}>
 <span>
