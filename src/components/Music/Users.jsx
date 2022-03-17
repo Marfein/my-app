@@ -1,19 +1,27 @@
 import React from 'react';
 import style from './Users.module.css';
-import * as axios from 'axios';
 import UserPhoto from '../../assets/images/8f160b5e9d954380c4b14b0f5ff4295ec9c141df_full.jpg';
 
+
 let Users = (props) => {
-    let getUsers= () =>{
-    if (props.users.length === 0) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
-            .then(response => {
-            props.setUsers(response.data.items);
-        });
+
+    let pagesCount = Math.ceil (props.totalUsersCount/props.pageSize);
+
+    let pages = [];
+    for (let i=1; i<=pagesCount; i++){
+        pages.push(i)
+        if (i === 20) break;
     }
-    }
+
     return <div>
-        <button onClick={getUsers}> Get Users</button>
+        <div>
+            {pages.map(p => {
+                return <span className={props.currentPage === p && style.selectedPage}
+                             onClick={(e) => {
+                                 props.onPageChanged(p)
+                             } } key={p.totalUsersCount}>{p}</span>
+            })}
+        </div>
         {
             props.users.map(u => <div key={u.id}>
 <span>
@@ -32,15 +40,16 @@ let Users = (props) => {
     </div>
 </span>
                 <span>
-                <div>{u.fullName}</div>
-                <div>{u.status}</div>
+                <div>это имя - {u.name}</div>
+                <div>Это статус - {u.status}</div>
             </span>
                 <span>
-                <div>{u.location.country}</div>
-                <div>{u.location.city}</div>
+                <div></div>
+                <div></div>
             </span>
             </div>)
         }
     </div>
 }
+
 export default Users;
