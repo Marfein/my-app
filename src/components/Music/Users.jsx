@@ -19,7 +19,7 @@ let Users = (props) => {
                 return <span className={props.currentPage === p && style.selectedPage}
                              onClick={(e) => {
                                  props.onPageChanged(p)
-                             } } key={p.totalUsersCount}>{p}</span>
+                             } } key={p.page}>{p}</span>
             })}
         </div>
         {
