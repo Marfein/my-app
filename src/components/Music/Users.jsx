@@ -20,16 +20,16 @@ let Users = (props) => {
                 return <span className={props.currentPage === p && style.selectedPage}
                              onClick={(e) => {
                                  props.onPageChanged(p)
-                             } } key={p.page}>{p}</span>
+                             } } key={p}>{p}</span>
             })}
         </div>
         {
             props.users.map(u => <div key={u.id}>
 <span>
     <div>
-        <NavLink to={'/profile/*' + u.id}>
+        <NavLink to={'/profile/' + u.id}>
             <img src={u.photos.small != null ? u.photos.small : UserPhoto}
-                                               className={style.userPhoto} alt=""/>
+                                               className={style.userPhoto} alt=''/>
         </NavLink>
     </div>
     <div>
