@@ -57,19 +57,19 @@ const usersReducer = (state = initialState, action) => {
             return state;
     }
 }
-export const followSuccess = (userId) => ({type: FOLLOW, userId});
-export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});
-export const setUsers = (users) => ({type: SET_USERS, users});
-export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
-export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const followSuccess = (userId) => ({type: FOLLOW, userId});//action creators
+export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});//action creators
+export const setUsers = (users) => ({type: SET_USERS, users});//action creators
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});//action creators
+export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});//action creators
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});//action creators
 export const toggleIsFollowingProgress = (isFetching, userId) => ({
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
     isFetching,
     userId
-});
+});//action creators
 
-export const getUsers = (currentPage, pageSize) => {
+    export const getUsers = (currentPage, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
 
@@ -80,7 +80,7 @@ export const getUsers = (currentPage, pageSize) => {
                 dispatch(setTotalUsersCount(data.totalCount));
             });
     }
-}
+}//thunk
     export const follow = (userId) => {
         return (dispatch) => {
             dispatch(toggleIsFollowingProgress(true, userId));
@@ -92,7 +92,7 @@ export const getUsers = (currentPage, pageSize) => {
                     dispatch(toggleIsFollowingProgress(false, userId));
                 });
         }
-    }
+    }//thunk
     export const unfollow = (userId) => {
         return (dispatch) => {
             dispatch(toggleIsFollowingProgress(true, userId));
@@ -104,5 +104,6 @@ export const getUsers = (currentPage, pageSize) => {
                     dispatch(toggleIsFollowingProgress(false, userId));
                 });
         }
-    }
+    }//thunk
+
     export default usersReducer;
