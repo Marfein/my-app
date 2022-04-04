@@ -2,12 +2,13 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from "./Message/Message";
+import {Navigate} from "react-router-dom";
 
 const Dialogs = (props) => {
     let state = props.dialogsPage;
 
-    let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />);
-    let messagesElement = state.messages.map(m => <Message message={m.message} key={m.message} />);
+    let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);
+    let messagesElement = state.messages.map(m => <Message message={m.message} key={m.message}/>);
     let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () => {
@@ -18,6 +19,8 @@ const Dialogs = (props) => {
         props.updateNewMessageBody(body);
     }
 
+    if (!props.isAuth) return <Navigate to ="/Login" /> ;
+
     return (
         <div>
             <Message/>
@@ -27,7 +30,7 @@ const Dialogs = (props) => {
                     <div>{messagesElement}</div>
                     <div className={s.messages}>
                         <textarea value={newMessageBody} onChange={onNewMessageChange}
-                                  placeholder='Enter your message'></textarea>
+                                  placeholder='Enter your message'/>
                     </div>
                     <div className={s.messages}>
                         <button onClick={onSendMessageClick}>Send</button>
