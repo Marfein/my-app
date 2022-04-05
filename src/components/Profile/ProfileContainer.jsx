@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {useMatch} from 'react-router-dom';
-import { getUserProfile } from '../Redux/ProfileReducer';
+import {getUserProfile, setUserProfile} from '../Redux/ProfileReducer';
 import Profile from './Profile';
 import {usersAPI} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/AuthRedirect";
@@ -14,7 +14,7 @@ class ProfileContainer extends React.Component {
       this.props.getUserProfile(userId);
         usersAPI.getProfile(userId)
             .then(({ data }) => {
-            this.props.setUserProfile(data);
+            setUserProfile(data);
         });
     }
 
