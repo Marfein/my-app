@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {useMatch} from 'react-router-dom';
-import {getUserProfile, setUserProfile} from '../Redux/ProfileReducer';
+import {getStatus, getUserProfile, setUserProfile, updateStatus} from '../Redux/ProfileReducer';
 import Profile from './Profile';
 import {usersAPI} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/AuthRedirect";
@@ -12,10 +12,11 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match ? this.props.match.params.userId : 2;
       this.props.getUserProfile(userId);
-        usersAPI.getProfile(userId)
+      this.props.getStatus(userId)
+          /*usersAPI.getProfile(userId)
             .then(({ data }) => {
-            setUserProfile(data);
-        });
+                setUserProfile(data);
+            });*/
     }
 
     render() {
@@ -24,7 +25,7 @@ class ProfileContainer extends React.Component {
         return (
 
             <div>
-                <Profile {...this.props} profile={this.props.profile} />
+                <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
             </div>
         );
     }
@@ -37,10 +38,11 @@ const ProfileURLMatch = (props) => {
 
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
+    status: state.profilePage.status
 });
 
 export default compose(
- connect(mapStateToProps, { getUserProfile }),
+ connect(mapStateToProps, { getUserProfile,getStatus, updateStatus }),
     withAuthRedirect)(ProfileURLMatch);
 
 
